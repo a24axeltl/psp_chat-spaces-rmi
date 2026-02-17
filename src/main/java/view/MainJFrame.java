@@ -43,6 +43,7 @@ public class MainJFrame extends javax.swing.JFrame {
         usersScrollPane = new javax.swing.JScrollPane();
         usersList = new javax.swing.JList<>();
         sendMessageButton = new javax.swing.JButton();
+        connectUserButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,10 +83,13 @@ public class MainJFrame extends javax.swing.JFrame {
 
         sendMessageButton.setText("Enviar");
 
+        connectUserButton.setText("Con");
+
         chatMessengerLayeredPane.setLayer(historialMessagesScrollPane, javax.swing.JLayeredPane.DEFAULT_LAYER);
         chatMessengerLayeredPane.setLayer(userMessageTextField, javax.swing.JLayeredPane.DEFAULT_LAYER);
         chatMessengerLayeredPane.setLayer(usersScrollPane, javax.swing.JLayeredPane.DEFAULT_LAYER);
         chatMessengerLayeredPane.setLayer(sendMessageButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        chatMessengerLayeredPane.setLayer(connectUserButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout chatMessengerLayeredPaneLayout = new javax.swing.GroupLayout(chatMessengerLayeredPane);
         chatMessengerLayeredPane.setLayout(chatMessengerLayeredPaneLayout);
@@ -98,8 +102,11 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(userMessageTextField))
                 .addGap(18, 18, 18)
                 .addGroup(chatMessengerLayeredPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(usersScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(sendMessageButton, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                    .addComponent(usersScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(chatMessengerLayeredPaneLayout.createSequentialGroup()
+                        .addComponent(sendMessageButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(connectUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         chatMessengerLayeredPaneLayout.setVerticalGroup(
@@ -111,8 +118,9 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(historialMessagesScrollPane))
                 .addGap(18, 18, 18)
                 .addGroup(chatMessengerLayeredPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(userMessageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sendMessageButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(userMessageTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(sendMessageButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(connectUserButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -165,7 +173,6 @@ public class MainJFrame extends javax.swing.JFrame {
     public void addItemToHistorialMessagesList(String message){
         this.modelChat.addElement(message);
         this.historialMessagesList.setModel(modelChat);
-        clearTextUserMessageTextField();
     }
     
     public void addItemToUsersList(String user){
@@ -204,6 +211,7 @@ public class MainJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accessChatButton;
     private javax.swing.JLayeredPane chatMessengerLayeredPane;
+    private javax.swing.JButton connectUserButton;
     private javax.swing.JList<String> historialMessagesList;
     private javax.swing.JScrollPane historialMessagesScrollPane;
     private javax.swing.JTextField registerNameTextField;

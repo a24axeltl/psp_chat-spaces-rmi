@@ -6,35 +6,38 @@ package service;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import model.Client;
 
 /**
  *
  * @author dam2_alu13@inf.ald
  */
 public class MessengerServiceImpl extends UnicastRemoteObject implements MessengerService{
-    private String user;
-    private String message;
+    private Client client = new Client("", "");
     
-    public MessengerServiceImpl() throws RemoteException {
-        //super();
-    }
+    public MessengerServiceImpl() throws RemoteException {}
 
     @Override
     public void sendMessage(String user, String message) throws RemoteException {
-        this.user = user;
-        this.message = message;
+        this.client.setName(user);
+        this.client.setMessage(message);
     }
 
     @Override
-    public void getMessage() throws RemoteException {
-        while(message == null){
+    public String getMessage() throws RemoteException {
+        while(client.getMessage() == null){
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException ex) {
                 System.err.println("Interrupted Exception: " + ex.getMessage());
             }
         }
-        System.out.println(user + ": " + message);
+        return client.toString();
+    }
+
+    @Override
+    public void setMessage(String message) throws RemoteException {
+        this.client.setMessage(message);
     }
     
 }
