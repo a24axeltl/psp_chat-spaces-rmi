@@ -8,11 +8,8 @@ import controller.remotedata.RemoteDataController;
 import controller.service.ServiceController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.rmi.AccessException;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import javax.swing.JOptionPane;
-import model.Client;
 import view.MainJFrame;
 import view.remotedata.RemoteDataJDialog;
 
@@ -23,6 +20,8 @@ import view.remotedata.RemoteDataJDialog;
 public class FrontController {
     private MainJFrame view;
     private ServiceController serviceController;
+    private String userName= null;
+    private String IP = null;
     
     public FrontController(MainJFrame view) {
         this.view = view;
@@ -39,16 +38,20 @@ public class FrontController {
                 if(view.getTextRegisterNameTextField() != null){
                     int inputOptionPane = JOptionPane.showConfirmDialog(view, "Quiere iniciar un chat propio?? (Si selecciona 'No', se iniciara el proceso para conectarse a uno?)");
                     if(inputOptionPane == 0){
-                        RemoteDataJDialog rdJD = new RemoteDataJDialog(view,true);
-                        RemoteDataController rdC = new RemoteDataController(rdJD,false);
-                        rdJD.setVisible(true);
+                        try {
+                            serviceController.createRmiRegistry();
+                        } catch (RemoteException ex) {
+                            JOptionPane.showMessageDialog(view, "Error al crear el registro RMI: " + ex.getMessage(), "Error del mensaje", JOptionPane.ERROR_MESSAGE);  
+                            System.exit(0);
+                        }
                     } else {
                         RemoteDataJDialog rdJD = new RemoteDataJDialog(view,true);
-                        RemoteDataController rdC = new RemoteDataController(rdJD,true);
+                        RemoteDataController rdC = new RemoteDataController(rdJD);
                         rdJD.setVisible(true);
                     }
                     view.showChatMessengerLayeredPane();
-                    new Thread(() -> hearMessages()).start();
+                    userName = view.getTextRegisterNameTextField();
+                    initThreadHearMessages();
                 } else {
                     JOptionPane.showMessageDialog(view, "Los campos deben de estar rellanados");
                 }
@@ -62,35 +65,42 @@ public class FrontController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(view.getTextUserMessageTextField() != null){
-                    System.out.println("Mensaje de Host");
-                } else {
-                    System.out.println("No hay texto");
+                    try {
+                        serviceController.sendMessage(userName, view.getTextUserMessageTextField());
+                        view.addItemToHistorialMessagesList(userName + ": " + view.getTextUserMessageTextField());
+                    } catch (RemoteException ex) {
+                        JOptionPane.showMessageDialog(view, "Error al enviar un mensaje: " + ex.getMessage(), "Error del mensaje", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         };
         return al;
     }
     
-    public void hearMessages() {
+    private void initThreadHearMessages(){
+        new Thread(() -> hearMessages()).start();
+    }
+    
+    private void hearMessages() {
         try {
-            serviceController.connectClient("MessengerService", "127.0.0.1");
+            serviceController.connectClient(serviceController.getThisIP());
+            System.out.println(serviceController.getThisIP());
+            System.out.println("Escuchando mensajes...");
             while (true) {
-                System.out.println("Escuchando mensajes...");
                 try {
-                    view.addItemToHistorialMessagesList(serviceController.getMessage());
+                    String remoteMessage = serviceController.getMessage();
+                    String[] partsRemoteMessage = remoteMessage.split(":");
+                    if(!partsRemoteMessage[0].equals(userName)){
+                        view.addItemToHistorialMessagesList(remoteMessage);
+                    }
                     serviceController.setMessage(null);
                 } catch (RemoteException ex) {
-                    JOptionPane.showMessageDialog(view, "Error al recibir el mensaje: " + ex.getMessage(), "Error mensaje", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view, "Error al recibir el mensaje: " + ex.getMessage(), "Error del mensaje", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception ex) {
-            try {
-                System.err.println(ex.getMessage());
-                Thread.sleep(3000);
-                hearMessages();
-            } catch (InterruptedException ex1) {
-                System.err.println(ex.getMessage());
-            }
+            System.err.println(ex.getMessage());
+            initThreadHearMessages();
         }
     }
 }

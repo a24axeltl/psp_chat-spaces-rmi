@@ -79,6 +79,6 @@ public class Client {
 
     @Override
     public String toString() {
-        return name + ": " + message + '}';
+        return name + ": " + message;
     }
 }

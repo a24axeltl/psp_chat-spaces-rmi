@@ -24,25 +24,16 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace pref="143" max="32767" attributes="0"/>
+              <Component id="connectButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="rmiBindLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="remoteIpLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="remoteIpTextField" pref="137" max="32767" attributes="0"/>
-                          <Component id="rmiBindTextField" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="connectButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="remoteIpLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="remoteIpTextField" pref="137" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -51,15 +42,10 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="rmiBindLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="rmiBindTextField" min="-2" max="-2" attributes="0"/>
+                  <Component id="remoteIpLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="remoteIpTextField" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="remoteIpLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="remoteIpTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="17" max="32767" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
               <Component id="connectButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -67,17 +53,10 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="rmiBindLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="RMI Bind:"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="remoteIpLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Remote IP:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="rmiBindTextField">
     </Component>
     <Component class="javax.swing.JTextField" name="remoteIpTextField">
     </Component>

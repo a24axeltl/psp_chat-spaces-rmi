@@ -31,15 +31,11 @@ public class RemoteDataJDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        rmiBindLabel = new javax.swing.JLabel();
         remoteIpLabel = new javax.swing.JLabel();
-        rmiBindTextField = new javax.swing.JTextField();
         remoteIpTextField = new javax.swing.JTextField();
         connectButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        rmiBindLabel.setText("RMI Bind:");
 
         remoteIpLabel.setText("Remote IP:");
 
@@ -50,33 +46,24 @@ public class RemoteDataJDialog extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rmiBindLabel)
-                            .addComponent(remoteIpLabel))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(remoteIpTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                            .addComponent(rmiBindTextField)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(connectButton)))
+                .addContainerGap(143, Short.MAX_VALUE)
+                .addComponent(connectButton)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(remoteIpLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(remoteIpTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rmiBindLabel)
-                    .addComponent(rmiBindTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(remoteIpLabel)
                     .addComponent(remoteIpTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(connectButton)
                 .addContainerGap())
         );
@@ -95,14 +82,10 @@ public class RemoteDataJDialog extends javax.swing.JDialog {
         return null;
     }
     
-    public String getTextRmiBindIpTextField(){
-        if(!rmiBindTextField.getText().isEmpty()){
-            return rmiBindTextField.getText();
-        }
-        return null;
-    }
-    
     public void showremoteIPInfo(boolean show){
+        if(!show){
+            this.dispose();
+        }
         this.remoteIpLabel.setVisible(show);
         this.remoteIpTextField.setVisible(show);
     }
@@ -111,7 +94,5 @@ public class RemoteDataJDialog extends javax.swing.JDialog {
     private javax.swing.JButton connectButton;
     private javax.swing.JLabel remoteIpLabel;
     private javax.swing.JTextField remoteIpTextField;
-    private javax.swing.JLabel rmiBindLabel;
-    private javax.swing.JTextField rmiBindTextField;
     // End of variables declaration//GEN-END:variables
 }
