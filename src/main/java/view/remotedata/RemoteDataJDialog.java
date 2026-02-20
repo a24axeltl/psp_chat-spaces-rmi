@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
  */
 public class RemoteDataJDialog extends javax.swing.JDialog {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RemoteDataJDialog.class.getName());
 
     /**
      * Creates new form RemoteDataJDialog

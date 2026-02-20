@@ -21,8 +21,8 @@ import service.MessengerServiceImpl;
 public class ServiceController {
     private MessengerService thisService; //Nuestro propio servicio;
     private MessengerService remoteService; //Servicio del otro usuario;
-    private String RMI_BIND = "MessengerATL";
-    private int PORT = 1099;
+    private final String RMI_BIND = "MessengerATL";
+    private final int PORT = 1099;
     
     public void createRmiRegistry() throws RemoteException{
         thisService = new MessengerServiceImpl(); //Nuestro propio servicio;
@@ -54,6 +54,10 @@ public class ServiceController {
         }
     }
     
+    public MessengerService getRemoteService(){
+        return this.remoteService;
+    }
+    
     public void sendMessage(String user, String message) throws RemoteException{
         remoteService.sendMessage(user, message);
     }
@@ -64,5 +68,9 @@ public class ServiceController {
     
     public void setMessage(String message) throws RemoteException{
         remoteService.setMessage(message);
+    }
+    
+    public String getRemoteName() throws RemoteException{
+        return remoteService.getNameClient();
     }
 }

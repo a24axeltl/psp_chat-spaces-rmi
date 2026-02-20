@@ -94,12 +94,8 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="usersScrollPane" min="-2" pref="140" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="sendMessageButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="connectUserButton" pref="0" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="usersScrollPane" pref="140" max="32767" attributes="0"/>
+                      <Component id="sendMessageButton" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="19" max="32767" attributes="0"/>
               </Group>
@@ -117,7 +113,6 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="userMessageTextField" alignment="1" pref="36" max="32767" attributes="0"/>
                       <Component id="sendMessageButton" max="32767" attributes="0"/>
-                      <Component id="connectUserButton" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -173,11 +168,6 @@
         <Component class="javax.swing.JButton" name="sendMessageButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Enviar"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="connectUserButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Con"/>
           </Properties>
         </Component>
       </SubComponents>

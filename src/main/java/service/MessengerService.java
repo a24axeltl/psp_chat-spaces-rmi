@@ -15,4 +15,5 @@ public interface MessengerService extends Remote{
     void sendMessage(String user,String message) throws RemoteException;
     String getMessage()throws RemoteException;
     void setMessage(String message)throws RemoteException;
+    String getNameClient()throws RemoteException;
 }

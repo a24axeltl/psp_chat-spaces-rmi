@@ -39,5 +39,9 @@ public class MessengerServiceImpl extends UnicastRemoteObject implements Messeng
     public void setMessage(String message) throws RemoteException {
         this.client.setMessage(message);
     }
-    
+
+    @Override
+    public String getNameClient() throws RemoteException{
+        return this.client.getName();
+    }
 }
