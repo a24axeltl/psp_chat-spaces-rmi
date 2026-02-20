@@ -17,6 +17,8 @@ El programa **NO** es capaz de...
 
 ## Arquitectura general
 El sistema sigue un modelo simétrico **P2P**:
+
+
 ┌──────────────┐ RMI ┌──────────────┐
 │ Chat A │ ◀───── ──────▶ │ Chat B │
 │ │ │ │                       | | | |
